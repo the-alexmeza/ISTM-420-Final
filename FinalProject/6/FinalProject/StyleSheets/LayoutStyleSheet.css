@@ -1,0 +1,410 @@
+﻿/* Set basic attributes for background. Using a white on white style, so background is set to slightly off white. */
+body {
+    background-color: #FAFAFA;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+}
+
+/* Heading/Text attributes. Self explanatory */
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 21px;
+    color: #F86B68;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #F86B68;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #333333;
+}
+
+/* Just used to change text color. */
+.white {
+    color: white;
+}
+
+.red {
+    color: #F86B86;
+}
+
+.nav-logo {
+    font-family: 'Kanit', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+/* Similar to an actual row, just keeps things inline and adds vertical spacing between cards when they wrap down. */
+.card-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+a .card-title {
+    /* Text being underlined for some reason, so changing line to white*/
+    text-decoration: white underline;
+    color: #5F5F5F;
+}
+
+/* Sets and aligns image to fill constraint of a card. Cards are used in the order inventory screen. */
+.card-img img {
+    align-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Adds a small border and background color to the card image. */
+.card-img {
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    background-color: #FAFAFA;
+}
+
+/* Cards are constructed with a title, image, and body. This just differentiates the title text style from the body text. */
+.card-title {
+    color: #5F5F5F;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Initially, there was a different card class. After changing the entire dashboard style, it was removed. Meanwhile, the inventory screen
+    had to have a separate card classs that just tweaked some sizes.
+
+    Essentially, this creates a white card with a dropshadow (for depth).
+*/
+.inv-card {
+    align-items: center;
+    margin-right: 32px;
+    max-width: 200px;
+    max-height: 300px;
+    padding: 20px 20px;
+    background-color: white;
+    box-shadow: 0 1px 9px 0 rgba(204, 204, 204, 0.50);
+    border-radius: 6px;
+}
+    /* Ran into issues keeping images a consistent size, so there are a few redundancies such as this when it comes to sizing. */
+    .inv-card .card-img {
+        max-height: 100px;
+        max-width: 100px;
+        border-radius: 6px;
+    }
+
+.item_Quantity {
+    max-width: 60px;
+}
+
+/* Sets style for the main text of a card. */
+.card-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    color: #AEAEAE;
+    width: inherit;
+}
+
+.card-btn {
+    width: inherit;
+}
+
+/* Initially there were 3 style sheets. One for a master page called "InputFormBase" and this one.
+    After some thinking, it made more sense for all pages (other than landing) to use the same navbar style
+    rather than switching from top nav to side nav.
+
+    The CSS below used to be exclusive to that InputFormBase, but is now the general style.
+*/
+
+/* This is the same as the brand class from the landing style sheet, just changes the color to red. */
+.brand-red {
+    font-size: 36px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 800;
+    color: #F86B68;
+    padding: 0;
+    padding-top: 10px;
+    margin: 0;
+}
+
+/* Sets up the navbar. Same as the landing style sheet navbar, but with a background color and drop shadow to separate it from the rest of the content. */
+nav {
+    position: absolute;
+    left: 0;
+    padding-left: 60px;
+    right: 0;
+    z-index: 500;
+    height: 70px;
+    background-color: white;
+    box-shadow: 0 1px 9px 0 rgba(204, 204, 204, 0.50);
+}
+    /* Removes list icons, displays it in a line, and removes most default styling to keep things
+        in line and spaced out.
+    */
+    nav ul {
+        list-style-type: none;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 30px;
+        height: 50px;
+    }
+
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            padding-right: 40px;
+            float: right;
+        }
+            /* Again, not using any of the pseudoclasses because they just made it look
+                awkward to hover. I believe that the cursor changing to a pointer is enough.
+            */
+            nav ul li a {
+                display: inline-block;
+                color: #F86B68;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-decoration: none;
+            }
+
+        /* The sign out button was slightly too low, just shifts it upwards */
+        nav ul :first-child {
+            margin-top: -5px;
+        }
+    /* Removes the underline from anchor elements. */
+    nav p a {
+        color: #F86B68;
+        text-decoration: none;
+    }
+
+    /* Removes style from hovering over the brand, this servers to keep it the same while still changing
+        the cursor to a pointer.
+    */
+    nav .brand-red a:hover {
+        color: #F86B68;
+        text-decoration: none;
+    }
+
+/* Style for the Sign Out button. Same as the sign in one from the landing style sheet, just inverted the colors. */
+.btn-sm {
+    display: inline-block;
+    font-size: 18px;
+    padding: 7px 28px;
+    background-color: #F86B68;
+    box-shadow: 0 1px 9px 0 rgba(113, 0, 0, 0.50);
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+}
+    /* Slightly change background color to show that it is being hovered. */
+    .btn-sm:hover {
+        background-color: #f63f3c;
+    }
+
+/* The navbar messed with vertical spacing of content, so this buffer just adds some
+    whitespace between the start of the page content and the navbar.
+*/
+#buffer {
+    height: 100px;
+}
+
+/* Creates a container with a white background and box shadow. This creates more depth. */
+.container-background {
+    align-items: center;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 40px 40px;
+    background-color: white;
+    box-shadow: 0 1px 9px 0 rgba(204, 204, 204, 0.50);
+    border-radius: 6px;
+}
+
+/* The about us page needed to have a larger max-width, so this just increased that limit. */
+.container-background-lg {
+    align-items: center;
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 40px 40px;
+    background-color: white;
+    box-shadow: 0 1px 9px 0 rgba(204, 204, 204, 0.50);
+    border-radius: 6px;
+}
+
+/* Bootstrap handles forms really well by using a form-control class to create consistent styling. This is my attempt
+    at that. Using 100% width is a great way of using space and making forms not look super cluttered.
+
+    Other than that, this just sets the background color and the color for the input text.
+*/
+.form-control {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 7px;
+    color: #B6B6B6;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    border: 0;
+    padding: 8px 8px;
+}
+
+/* I like all form buttons being on the right side, so this floats it there and removes the default
+    border.
+*/
+.form-btn {
+    float: right;
+    border: 0;
+}
+
+/* I use this as a div id after I float something, otherwise things start stacking on each other. */
+#clear {
+    clear: both;
+}
+
+/* This is the "Request Access" link. Sets it to a lighter blue, because default anchor blue is kind of ugly. 
+    As I touched on in some other places, link pseudoclasses seem excessive to me and I prefer only having
+    the cursor change to a pointer. Due to that, I'm not using them on normal anchors.
+
+    Just to show that I know how to use them, the hover pseudoclass is used wherever there are buttons.
+*/
+#access {
+    font-size: 12px;
+    color: #38bad7;
+    float: left;
+    font-family: 'Lato', sans-serif;
+    display: block;
+    padding-top: 5px;
+}
+
+/* The CSS below is used for each dashboard page. */
+
+/* I use display:flex because it is direction agnostic, and generally easier to keep things side by side in. */
+#dashboard {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+}
+    /* Dashboard containers are the white sections behind each content piece. They have sharper corners than
+        the card layout, but are otherwise the same.
+
+        As much as I've tried, there just really isn't a better way to handle dashboards. These containers
+        keep relevant information together, and add depth with the drop shadow.
+    */
+    #dashboard .container {
+        align-items: center;
+        padding: 20px 20px;
+        background-color: white;
+        box-shadow: 0 1px 9px 0 rgba(204, 204, 204, 0.50);
+        border-radius: 3px;
+    }
+
+    /* Only used in the store list. Just removes the list icons. */
+    #dashboard ul {
+        list-style-type: none;
+    }
+
+    #dashboard ul li {
+        list-style-type: none;
+    }
+
+/* More styling for the store list, the top layer is a label so it needs to be larger and a different color. */
+.top-layer {
+    font-size: 18px;
+    color: #F86B86;
+}
+
+/* The bottom layer is normal text, so the font size decreases. I also use padding since it started to look cluttered without it. */
+.bottom-layer {
+    padding-top: 8px;
+    font-size: 14px;
+    color: #333333;
+}
+
+/* This is the left column, which displays the key information of that dashboard page. */
+.dash-col-lg {
+    /* Width of left column is 60% of page, but we have to account for the 80px of margin within the #dashboard div */
+    width: calc(60% - 80px);
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+/* This is the right column, which displays less important information. */
+.dash-col-sm {
+    /* Right column will be 40% of the page, but account for 80px of margin. This prevents content from stacking. */
+    width: calc(40% - 80px);
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+/* I really had no idea how to make this section look good. The inv link is the link that says
+    "Order Inventory >>". I just switched it to block, increased the font size, and aligned it to the right.
+*/
+#inv_link a {
+    display: block;
+    font-size:18px;
+    color: #155898;
+    text-align: right;
+    float: right;
+}
+
+/* On "Sales" page. This id is for the span that says that Location 3 is projected to miss its quota. 
+    Just sets the background color.
+
+    Slow and good do the exact same thing, just different colors.
+*/
+#bad {
+    color:#c0392b; 
+}
+
+#slow {
+    color: #f1c40f;
+}
+
+#good {
+    color: #2ecc71;
+}
+
+/* I needed an explanation of what the "Create Campaign" area did on the marketing page.
+    The text looked weird on its own, so I had to remove the margin and thin out the font.
+
+    Margin-block-start and end are here because sometimes they still create spacing, even if margin-top/bottom
+    are set to 0.
+*/
+#caption {
+    color: #CCC;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: lighter;
+}
+
+/* This class is used for the success label after creating a new campaign. */
+.green {
+    color: #2ecc71;
+    font-size: 12px;
+}
+
+/* Center the text in the outlook div on the Sales page. */
+#outlook {
+    text-align: center;
+}

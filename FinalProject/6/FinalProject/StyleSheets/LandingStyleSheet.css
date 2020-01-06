@@ -1,0 +1,299 @@
+﻿* {
+    box-sizing: border-box;
+    /* This line helps when trying to figure out sizing. It means padding and borders
+        are included within the width and height attributes.
+    */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* These just set the font, size, weight, and color. */
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 21px;
+    color: #B6B6B6;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #F86B68;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #333333;
+}
+
+/* Keeps things consistent. Position is set to relative for the text content of the page. Overflow is hidden to keep
+    shapes from stretching the view horizontally.
+*/
+#page {
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+
+/* Just changes text color. */
+.white {
+    color: white;
+}
+
+.red {
+    color: #F86B86;
+}
+
+.nav-logo {
+    font-family: 'Kanit', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+/* Used for item spacing */
+.container {
+    padding: 0 20px;
+}
+
+/* This controls the content on top of the ribbons.
+    The -85px in margin-top calculation is to fine tune the negative margin.
+    I know that vw is related to width, however the difference was minimal in my testing
+    and using the 2vw made the vertical spacing look better to me. This isn't really
+    supposed to be super scalable regardless though, otherwise I would just use bootstrap.
+
+    The margins for this were just trial and error until the text looked like it was positioned
+    well enough compared to the image.
+*/
+#landing .container {
+    margin-top: calc(-85px - 2vw);
+    margin-left: 20%;
+    padding-top: 80px;
+    padding-bottom: 0;
+    max-width: 600px;
+}
+
+/* This div is for the intro text and intro image. */
+#landing {
+    display: flex;
+    height: 760px;
+    align-items: center;
+    position: relative;
+}
+
+/* This begins setting attributes to allow for the ribbon background.*/
+#header {
+    position: relative;
+    display: block;
+}
+
+/* This is the hardest section of my code. This area must stretch the entire width of the screen, but not overflow. 
+    The rectangle that is drawn by this code is then tilted down 10 degrees, creating a hard edge to allow for the
+    intro image to overhang. 
+*/
+#ribbon {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: skewY(-10deg);
+    transform-origin: 0;
+    background: #F86B68;
+}
+
+    /* These children had to have fine-tuned X, Y positions, so the position is set to absolute to prevent random changes. */
+    #ribbon, #ribbon span {
+        position: absolute;
+    }
+
+        /* Setting the height to 200px ensures that there is no white space between these block sections and the tilted rectangle. */
+        #ribbon span {
+            height: 200px;
+        }
+
+        /* This is the lighter pink column behind the logo. Breaking down what's happening:
+            Width: Calculation for 1/3 of the full screen. This just helps so I don't have to specify exact pixel values.
+            Left: Keep in mind that this whole area is set to position absolute. The goal of this attribute is to shift the starting point for this
+                ribbon NEGATIVE HALF of the width. Essentially, this takes the halfway point of the width, makes it negative, and starts drawing
+                the shape there.
+            Background: Sets background color.
+
+            It is important to note that I am using the calc function to get exact values. Otherwise there would be small gaps in between
+            the child objects.
+        */
+        #ribbon :first-child {
+            width: calc(100% / 3);
+            left: calc(calc(100%/6)*-1);
+            background: #FFA2A2;
+        }
+
+        /*
+            This is the 2nd span within the Ribbon div. This exists to add more texture to the site, giving a slightly darker pink.
+            The width is set to half of the viewport size. Since more of this area is showing, I don't want the normal background color to
+            show.
+
+            The left attribute has to start where the first child left off, so we set it to 1/6th of the viewport. This doesn't need to be 
+            inverted like the previous one because the drawing point starts on the screen rather than off of it.
+
+            Right doesn't matter, so I just set it to auto.
+        */
+        #ribbon :nth-child(2) {
+            width: 50%;
+            top: 0;
+            left: calc(100%/6);
+            right: auto;
+            background: #FE9696;
+        }
+
+/* This button is the large "View Dashboard" one. This just sets size, color, etc. Nothing too fancy. */
+.btn-lg {
+    display: inline-block;
+    font-size: 24px;
+    padding: 21px 40px;
+    background-color: white;
+    box-shadow: 0 1px 9px 0 rgba(113, 0, 0, 0.50);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #DD0A0A;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+}
+
+    .btn-lg:hover {
+        background-color: #F6f6f6;
+    }
+
+/* This class is for the smaller "Sign In" button. Pretty much the same as btn-lg, just smaller.*/
+.btn-sm {
+    display: inline-block;
+    font-size: 18px;
+    padding: 7px 28px;
+    background-color: white;
+    box-shadow: 0 1px 9px 0 rgba(113, 0, 0, 0.50);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #DD0A0A;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+}
+    /* Slight background color change when hovered so users can tell it is a button. */
+    .btn-sm:hover {
+        background-color: #f6f6f6;
+    }
+
+/* Floating nav style without a background, this is to show off the ribbon setup. I used z-index here to ensure that nothing covers it. */
+nav {
+    position: absolute;
+    left: 0;
+    padding-left: 60px;
+    top: 10px;
+    right: 0;
+    z-index: 500;
+    height: 50px;
+}
+    /* Setting up the nav style. Unfortunately something I did here messed with the order, so the list actually displays in reverse order.
+        That's why the sign in button is first in the HTML.
+    */
+    nav ul {
+        list-style-type: none;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 20px;
+        height: 50px;
+    }
+
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            padding-right: 40px;
+            float: right;
+        }
+            /* Leaving out the hover, visited, etc psuedoclasses was purposeful here. Slightly tweaking the text to a darker color
+                made it look weird, and I just didn't feel like it needed any other indication of hovering since the cursor
+                switches to pointer anyways.
+            */
+            nav ul li a {
+                display: inline-block;
+                color: white;
+                font-family: 'Lato', sans-serif;
+                font-size: 18px;
+                text-decoration: none;
+            }
+        /* I found that the sign in button looked like it was too close to the bottom, so this shifts it up slightly to look more inline.*/
+        nav ul :first-child {
+            margin-top: -5px;
+        }
+
+/* Brand style, just sets font characteristics. */
+.brand {
+    font-size: 36px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 800;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+/* For additional spacing between intro text and the image. */
+.intro-image {
+    padding-left: 5%;
+}
+
+/* Keeps items inline rather than stacking. Used for the images and blurbs underneath the intro section. */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    clear: both;
+    max-width: 960px;
+    align-items: center;
+}
+
+/* Additional vertical spacing. It looked weird for stores to be so far down, so it has less of a top/bottom margin than the other two sections. */
+#stores {
+    margin: 50px auto;
+}
+
+#sales, #marketing {
+    margin: 100px auto;
+}
+
+/* Column setup for the image/content areas. This line increases the vertical spacing of the text, making it easier to read. */
+.col-left p, .col-right p {
+    line-height: 32px;
+}
+
+/* Column setup for image/content areas. Floats the column and sets width to half of the available space. */
+.col-left {
+    width: 50%;
+    float: left;
+    padding-right: 60px;
+}
+
+.col-right {
+    width: 50%;
+    float: right;
+    padding-left: 60px;
+}
+
+/* Super basic footer. Since this is an internal tool, it didn't seem necessary to have any other information here. */
+footer {
+    text-align: center;
+}
+
+    footer p {
+        font-size: 12px;
+    }

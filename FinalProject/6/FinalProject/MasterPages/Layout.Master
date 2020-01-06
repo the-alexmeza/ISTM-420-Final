@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="FinalProject._6.FinalProject.MasterPages.Layout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit:800|Lato&display=swap" rel="stylesheet" />
+    <link href="../StyleSheets/LayoutStyleSheet.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav>
+            <p class="brand-red">
+                <img class="nav-logo" src="../Images/logored.svg" />
+                <a href="../Default.aspx">Boost</a>
+            </p>
+            <%
+                if (Session["SignIn"].ToString() == "true")
+                {%>
+
+            <ul>
+                <li>
+                    <a class="btn-sm" href="../Default.aspx">Sign Out</a>
+                </li>
+                <li>
+                    <a href="Marketing.aspx" class="red">Marketing</a>
+                </li>
+                <li>
+                    <a href="Sales.aspx" class="red">Sales</a>
+                </li>
+                <li>
+                    <a href="Stores.aspx" class="red">Stores</a>
+                </li>
+            </ul>
+
+            <% }
+                else
+                {
+            %>
+            <ul>
+                <li>
+                    <a class="btn-sm" href="SignIn.aspx">Sign In</a>
+                </li>
+                <li>
+                    <a href="AboutUs.aspx" class="red">about</a>
+                </li>
+                <li>
+                    <a href="../Default.aspx#stores" class="red">tools</a>
+                </li>
+            </ul>
+            <% } %>
+        </nav>
+        <div id="buffer"></div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+            <Scripts>
+                <asp:ScriptReference Path="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" />
+                <asp:ScriptReference Path="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" />
+            </Scripts>
+        </asp:ScriptManager>
+    </form>
+    <asp:ContentPlaceHolder ID="scripts" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>
